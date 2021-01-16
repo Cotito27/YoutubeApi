@@ -103,19 +103,71 @@ $(document).ready(function() {
   }
   
   $('body').on('click', '.content__theme', function() {
+    // let darkTheme = document.querySelector('#dark-theme');
+    
     if(this.innerHTML.includes('Modo Oscuro')) {
+      $('head').append(`<style id="theme-dark">
+    body {
+      background-color: #181818;
+      color: whitesmoke;
+    }
+
+    .navbar {
+      background-color: #202020;
+    }
+
+    .logo__youtubecv #youtube-paths path {
+      fill: whitesmoke;
+    }
+
+    .search__video input {
+      background-color: #121212;
+      color: whitesmoke;
+      border-bottom: 1px solid whitesmoke;
+    }
+
+    .search__video input::placeholder {
+      color: #acacac;
+    }
+
+    .theme__app {
+      background-color: #181818;
+    }
+
+    .date__time,
+    .time__view {
+      color: #8f8f8f !important;
+    }
+
+    .logo__youtubecv:hover {
+      background-color: #353535;
+    }
+
+    .card__video:hover {
+      background-color: #313131;
+    }
+
+    .author__video {
+      color: #dbdbdb;
+    }
+
+    .pace .pace-progress {
+      background: #2299dd !important;
+    }
+    </style>`);
       this.innerHTML = `Modo Claro &nbsp; <i class="far fa-sun"></i>`;
       localStorage.theme = 'dark';
     } else {
-      this.innerHTML = `Modo Oscuro &nbsp; <i class="far fa-moon"></i>`;
-      localStorage.theme = 'light';
+        $('#theme-dark').remove();
+        this.innerHTML = `Modo Oscuro &nbsp; <i class="far fa-moon"></i>`;
+        localStorage.theme = 'light';      
     }
     this.classList.toggle('btn__theme__light');
-    if($('#dark-theme').attr('href')) {
-      $('#dark-theme').removeAttr('href');
-    } else {
-      $('#dark-theme').attr('href', '/css/theme-dark.css');
-    }
+    // if($('#dark-theme').attr('href')) {
+    //   $('#dark-theme').removeAttr('href');
+    // } else {
+    //   $('#dark-theme').attr('href', '/css/theme-dark.css');
+    // }
   });
  
   $('body').on('click', '.btn__search', function() {
