@@ -1,0 +1,47 @@
+body {
+  background-color: #181818;
+  color: whitesmoke;
+}
+
+.navbar {
+  background-color: #202020;
+}
+
+.logo__youtubecv #youtube-paths path {
+  fill: whitesmoke;
+}
+
+.search__video input {
+  background-color: #121212;
+  color: whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.search__video input::placeholder {
+  color: #acacac;
+}
+
+.theme__app {
+  background-color: #181818;
+}
+
+.date__time,
+.time__view {
+  color: #8f8f8f !important;
+}
+
+.logo__youtubecv:hover {
+  background-color: #353535;
+}
+
+.card__video:hover {
+  background-color: #313131;
+}
+
+.author__video {
+  color: #dbdbdb;
+}
+
+.pace .pace-progress {
+  background: #2299dd !important;
+}

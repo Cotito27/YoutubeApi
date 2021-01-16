@@ -1,0 +1,27 @@
+<div class="card__body">
+   
+  <% videos.items.forEach((item) => { %>
+      <div id="<%= item.id.videoId %>" data-video-id="<%= item.id.videoId %>" data-channel-id="<%= item.snippet.channelId %>" data-title="<%= item.snippet.title %>" data-description="<%= item.snippet.description %>" data-time="<%= item.snippet.publishedAt %>" class="card__video wave">
+        <div class="info__video__yt">
+          <div class="img__video">
+            <img class="b-lazy" src="/img/placeholder-image.png" data-src="<%= item.snippet.thumbnails.high.url %>" alt="<%= item.snippet.title %>">
+          </div>
+          <div class="title__video">
+            <%= item.snippet.title %>
+          </div>
+          <div class="author__video">
+            <%= item.snippet.channelTitle %>
+          </div>
+          <div class="date__video">
+            <nav class="date__time"></nav>
+            <input type="hidden" value="<%= item.snippet.publishedAt %>" class="dateTime__video">
+          </div>
+        </div>
+        <iframe src="" class="d-none" id="player" allow='autoplay'></iframe>
+      </div>
+  <% }) %>
+  
+</div>
+<div class="more__videos">
+  <button class="btn__moreVideos wave" data-next-page="<%= videos.nextPageToken || '' %>">Ver más</button>
+</div>
