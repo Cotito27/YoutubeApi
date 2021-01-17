@@ -14,6 +14,12 @@ body {
   height: 50px;
   display: flex;
   align-items: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
 }
 
 .navbar__logo {
@@ -22,6 +28,7 @@ body {
 
 .logo__youtubecv {
   height: 35px;
+  width: 100px;
   font-size: 50px;
   font-weight: 600;
   letter-spacing: 0;
@@ -38,7 +45,7 @@ body {
 }
 
 .logo__youtubecv:hover {
-  background-color: #c5dbfc;
+  background-color: #d6d7d8;
 }
 
 .logo__youtubecv .text__youtcv {
@@ -52,6 +59,128 @@ body {
   width: 250px;
   max-width: 50%;
   margin-left: 20px;
+}
+
+.btn__clean {
+  position: absolute;
+  top: 0px;
+  right: 60px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #353535;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.menu__bars {
+  margin-left: 20px;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.menu__bars:hover {
+  background-color: #e3e4e6;
+}
+
+.container__sidebar {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-light);
+  width: 190px;
+  z-index: 3;
+  padding: 3px;
+}
+
+.logo__container {
+  display: flex;
+  padding-top: 8px;
+  margin-left: -3px;
+  border-bottom: 1px solid rgb(27 26 26 / 10%);
+  padding-bottom: 0.75em;
+}
+
+.block__container {
+  position: absolute;
+  width: 100vw;
+  height: 1000000px;
+  opacity: 0.5;
+  overflow: hidden;
+  top: 0;
+  background-color: #000000;
+  z-index: 2;
+}
+
+.options__menu {
+  margin-top: 0.4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.options__menu .item__menu {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: left;
+  height: 45px;
+  color: #525252;
+  font-size: 14px;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  cursor: pointer;
+}
+
+.show__theme,
+.check__select__theme {
+  pointer-events: none;
+}
+
+.check__select__light,
+.check__select__dark {
+  display: inline;
+  float: right;
+}
+
+.options__menu .item__menu:hover {
+  background-color: rgb(206, 206, 206);
+}
+
+.options__menu i {
+  padding-left: 20px;
+  padding-right: 15px;
+  font-size: 16px;
+  color: #646262;
+}
+
+.theme__select {
+  width: 16px;
+  height: 16px;
+  fill: #646262;
+  display: inline-block;
+}
+
+.show__theme {
+  float: right;
+  cursor: pointer;
+}
+
+.link__menu {
+  width: 100%;
+}
+
+.ov__hidden {
+  overflow: hidden;
 }
 
 .search__video input {
@@ -95,6 +224,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 76px;
 }
 
 .card__body .card__video {
@@ -105,8 +235,9 @@ body {
 }
 
 .card__video .title__video {
-  font-weight: 550;
+  font-weight: 500;
   margin-bottom: 5px;
+  font-size: 1.2rem;
 }
 
 .card__video .date__video {
@@ -137,7 +268,7 @@ body {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .preview__video {
@@ -145,11 +276,55 @@ body {
   padding: 10px;
 }
 
+/* .selected__item__menu {
+  background-color: rgb(218, 219, 221) !important;
+} */
+/* 
+.selected__item__menu i {
+  color: whitesmoke !important;
+} */
+
+.btn__up__scroll {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  opacity: 0.5;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.drop__list__history {
+  position: fixed;
+  background-color: rgb(252, 252, 252);
+  height: 400px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 5px;
+}
+
+.item__list__text {
+  padding: 5px 10px;
+  color: #3f3f3f;
+  cursor: pointer;
+}
+
+.item__list__text:hover {
+  background-color: rgb(235, 234, 234);
+}
+
 .more__videos {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 200px;
 }
 
 .btn__moreVideos {
@@ -173,6 +348,11 @@ body {
 .btn__moreVideos:hover {
   background-color: var(--primary-light-color);
   cursor: pointer;
+}
+
+.link__view {
+  text-decoration: none;
+  color: #065fd4;
 }
 /* button {
   padding: 13px 25px;
@@ -214,6 +394,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 76px;
 }
 
 .card__view__video {
@@ -229,21 +410,140 @@ button:hover {
 }
 
 .card__view__video .title__view {
-  font-size: 26px;
-  font-weight: 550;
+  font-size: 1.5rem;
+  font-weight: 400;
   padding: 3px;
+  margin-bottom: 7px;
+}
+
+.statistics__view {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .card__view__video .description__view {
   font-size: 16px;
   padding: 3px;
+  color: #444444;
+  line-height: 25px;
+  line-break: strict;
+  max-height: 60px;
+  overflow: hidden;
 }
 
-.card__view__video .time__view {
-  font-size: 14px;
-  font-weight: lighter;
-  color: rgb(15, 15, 15);
+.view__details__description {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  z-index: 1;
+  bottom: 8px;
+  padding: 4px;
+  padding-left: 0px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.more__details {
+  height: 100%;
+  color: #606060;
+  background-color: transparent;
+  font-weight: 550;
+  border: none;
+  outline: none;
+  font-family: "Open Sans";
+  cursor: pointer;
+}
+
+.more__details:hover {
+  background-color: #dddddd;
+}
+
+/* #dedede */
+
+.author__view {
+  font-size: 16px;
   padding: 3px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 40px;
+}
+
+.info__likes {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #424242;
+  padding-left: 18px;
+  justify-content: flex-end;
+  margin-bottom: -3px;
+}
+
+.info__primary__view {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 11px;
+  margin-top: 11px;
+}
+
+.like__view,
+.dislike__view {
+  width: 20px;
+  fill: #909090;
+  padding: 0 6px;
+  margin-top: -6px;
+  /* border-bottom: 2px solid #424242; */
+  cursor: pointer;
+}
+
+.like__view {
+}
+
+.like__view:hover,
+.dislike__view:hover {
+  fill: #c6c6cc;
+}
+
+.card__view__video .time__view,
+.views__view,
+.statistics__view {
+  font-size: 1rem;
+  font-weight: lighter;
+  color: #606060;
+  padding: 3px;
+}
+
+.number__likes,
+.number__dislikes {
+  padding-right: 18px;
+  margin-top: -6px;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  /* border-bottom: 2px solid #424242; */
+}
+
+.time__view {
+  margin-top: 0px;
+}
+
+.views__view {
+}
+
+.statistics__view {
+  padding: 3px;
+  margin-bottom: 0;
+}
+
+.separating__statistics {
+  padding-right: 3px;
+  padding-left: 3px;
+}
+
+.separating__statistics__likes {
+  padding-right: 6px;
+  padding-left: 6px;
+  flex: 1;
 }
 
 .previous__panel {
@@ -283,19 +583,26 @@ button:hover {
   margin-left: 5px;
 }
 
+.separating__text {
+  margin-bottom: 3px;
+  height: 3px;
+}
+
 .theme__app {
   margin-left: 25px;
   margin-right: 25px;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  margin-top: 76px;
 }
 
 .content__theme {
-  background-color: #0a2455;
+  background-color: #153268;
   width: 200px;
   height: 35px;
   color: whitesmoke;
@@ -312,16 +619,25 @@ button:hover {
 }
 
 .btn__theme__light {
-  background-color: whitesmoke;
-  color: #0a2455;
+  background-color: rgb(216, 215, 215);
+  color: #162c55;
 }
 
 .btn__theme__light:hover {
-  background-color: rgb(226, 242, 247);
+  background-color: rgb(231, 231, 231);
 }
 
 .author__video {
   margin-bottom: 2px;
+}
+
+@media only screen and (min-width: 1054px) {
+  /* .card__view__video .description__view {
+    max-height: 100px;
+  } */
+  .view__details__description {
+    bottom: 4px;
+  }
 }
 
 @media only screen and (max-width: 1109px) {
@@ -394,6 +710,18 @@ button:hover {
   }
 }
 
+@media only screen and (max-width: 579px) {
+  /**/
+  .info__likes {
+    margin-top: 15px;
+    justify-content: flex-start;
+  }
+
+  .separating__statistics__likes {
+    flex: 0;
+  }
+}
+
 @media only screen and (max-width: 580px) {
   .search__video input {
     max-width: 100vw !important;
@@ -410,5 +738,9 @@ button:hover {
 
   .search__video {
     right: 10px;
+  }
+
+  .btn__clean {
+    right: 32px;
   }
 }

@@ -3,12 +3,17 @@ body {
   color: whitesmoke;
 }
 
-.navbar {
+.navbar,
+.container__sidebar {
   background-color: #202020;
 }
 
 .logo__youtubecv #youtube-paths path {
   fill: whitesmoke;
+}
+
+.link__view {
+  color: #3ea6ff;
 }
 
 .search__video input {
@@ -26,7 +31,8 @@ body {
 }
 
 .date__time,
-.time__view {
+.time__view,
+.views__view {
   color: #8f8f8f !important;
 }
 
@@ -44,4 +50,63 @@ body {
 
 .pace .pace-progress {
   background: #2299dd !important;
+}
+
+.info__primary__view {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.144);
+}
+
+.view__details__description {
+  background-color: #181818;
+}
+
+.more__details {
+  color: #8f8f8f;
+}
+
+.more__details:hover {
+  background-color: #3f3e3e;
+  color: #ebe9e9;
+}
+
+.menu__bars {
+  fill: rgb(194, 194, 194);
+}
+
+.menu__bars:hover {
+  background-color: rgb(68, 67, 67);
+}
+
+.options__menu .item__menu {
+  color: #bbb9b9;
+}
+
+.options__menu i {
+  color: #b8b8b8;
+}
+
+.options__menu .item__menu:hover {
+  background-color: rgb(63, 63, 63);
+}
+
+.dropdown-content {
+  background-color: rgb(39, 38, 38);
+}
+
+.btn__clean {
+  color: #e2e2e2;
+}
+
+.drop__list__history {
+  background-color: rgb(56, 56, 56);
+}
+
+.item__list__text {
+  padding: 5px 10px;
+  color: #dadada;
+  cursor: pointer;
+}
+
+.item__list__text:hover {
+  background-color: rgb(75, 75, 75);
 }

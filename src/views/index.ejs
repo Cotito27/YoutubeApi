@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/preloader.css">
   <link rel="stylesheet" id="dark-theme">
+  <link rel="stylesheet" href="/css/dropdown.css">
   <!-- <link href="/css/pace/themes/blue/pace-theme-flat-top.css" rel="stylesheet" /> -->
   <link href="/libs/pace/themes/blue/pace-theme-flash.css" rel="stylesheet" />
   <script src="/libs/pace/pace.js"></script>
@@ -47,6 +48,134 @@
   }
   Pace.start();
   </script>
+
+<script>
+  if(localStorage.theme == 'dark') {
+    // let darkTheme = document.querySelector('#dark-theme');
+    // let btn__theme = document.querySelector('.content__theme');
+    let head = document.querySelector('head');
+    // darkTheme.href = '/css/theme-dark.css';
+    head.innerHTML += `<style id="theme-dark">
+  body {
+    background-color: #181818;
+    color: whitesmoke;
+  }
+
+  .navbar,
+  .container__sidebar {
+    background-color: #202020;
+  }
+
+  .logo__youtubecv #youtube-paths path {
+    fill: whitesmoke;
+  }
+
+  .search__video input {
+    background-color: #121212;
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+  }
+
+  .search__video input::placeholder {
+    color: #acacac;
+  }
+
+  .theme__app {
+    background-color: #181818;
+  }
+
+  .date__time,
+  .time__view,
+  .views__view,
+  .statistics__view {
+    color: #8f8f8f !important;
+  }
+
+  .logo__youtubecv:hover {
+    background-color: #353535;
+  }
+
+  .card__video:hover {
+    background-color: #313131;
+  }
+
+  .author__video {
+    color: #dbdbdb;
+  }
+
+  .pace .pace-progress {
+    background: #2299dd !important;
+  }
+
+  .link__view {
+    color: #3ea6ff;
+  }
+
+  .info__primary__view {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.144);
+  }
+
+  .card__view__video .description__view {
+    color: #dedede;
+  }
+
+  .view__details__description {
+    background-color: #181818;
+  }
+
+  .more__details {
+    color: #8f8f8f;
+  }
+
+  .more__details:hover {
+    background-color: #3f3e3e;
+    color: #ebe9e9;
+  }
+
+  .menu__bars {
+    fill: #e3e4e6;
+  }
+
+  .menu__bars:hover {
+    background-color: rgb(68, 67, 67);
+  }
+
+  .options__menu .item__menu {
+    color: #bbb9b9;
+  }
+
+  .options__menu i {
+    color: #b8b8b8;
+  }
+
+  .options__menu .item__menu:hover {
+    background-color: rgb(63, 63, 63);
+  }
+
+  .dropdown-content {
+    background-color: rgb(39, 38, 38);
+  }
+
+  .btn__clean {
+    color: #e2e2e2;
+  }
+
+  .drop__list__history {
+    background-color: rgb(56, 56, 56);
+  }
+
+  .item__list__text {
+    padding: 5px 10px;
+    color: #dadada;
+    cursor: pointer;
+  }
+
+  .item__list__text:hover {
+    background-color: rgb(75, 75, 75);
+  }
+  </style>`;
+  }
+</script>
   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
   <%- include('partials/navigation') %>
 
@@ -56,75 +185,34 @@
       <iframe src="https://www.youtube.com/embed/asf?autoplay=1" id="player" allow='autoplay'></iframe>
     </div>
 </center> -->
-  <div class="theme__app">
-    <div class="content__theme">
+  <div class="theme__app d-none">
+    <div class="content__theme wave">
       Modo Oscuro &nbsp; <i class="far fa-moon"></i>
     </div>
   </div>
+  
+  <%- include('partials/sidebar') %>
+
   <script>
     if(localStorage.theme == 'dark') {
       // let darkTheme = document.querySelector('#dark-theme');
-      let btn__theme = document.querySelector('.content__theme');
-      let head = document.querySelector('head');
-      // darkTheme.href = '/css/theme-dark.css';
-      head.innerHTML += `<style id="theme-dark">
-    body {
-      background-color: #181818;
-      color: whitesmoke;
-    }
-
-    .navbar {
-      background-color: #202020;
-    }
-
-    .logo__youtubecv #youtube-paths path {
-      fill: whitesmoke;
-    }
-
-    .search__video input {
-      background-color: #121212;
-      color: whitesmoke;
-      border-bottom: 1px solid whitesmoke;
-    }
-
-    .search__video input::placeholder {
-      color: #acacac;
-    }
-
-    .theme__app {
-      background-color: #181818;
-    }
-
-    .date__time,
-    .time__view {
-      color: #8f8f8f !important;
-    }
-
-    .logo__youtubecv:hover {
-      background-color: #353535;
-    }
-
-    .card__video:hover {
-      background-color: #313131;
-    }
-
-    .author__video {
-      color: #dbdbdb;
-    }
-
-    .pace .pace-progress {
-      background: #2299dd !important;
-    }
-    </style>`;
-      btn__theme.innerHTML = `Modo Claro &nbsp; <i class="far fa-sun"></i>`;
-      btn__theme.classList.toggle('btn__theme__light');
+      // let btn__theme = document.querySelector('.content__theme');
+      let selected__theme__dark = document.querySelector('.check__select__dark');
+      selected__theme__dark.classList.remove('d-none');
+    } else {
+      let selected__theme__light = document.querySelector('.check__select__light');
+      selected__theme__light.classList.remove('d-none');
     }
   </script>
+
   <% if(allVideos) { %>
     <%- include('partials/videos') %>
   <% } else { %>
     <%- include('partials/video') %>
   <% } %>
+  <button class="btn__up__scroll d-none"><i class="fas fa-angle-up"></i></button>
+  <div class="drop__list__history">
+  </div>
   <script>
     // 2. This code loads the IFrame Player API code asynchronously.
     // var tag = document.createElement('script');
@@ -172,6 +260,8 @@
   <!-- BLAZY IMAGENES -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js" integrity="sha512-Yrd3VqXNBUzyCQWVBlL65mTdE1snypc9E3XnGJba0zJmxweyJAqDNp6XSARxxAO6hWdwMpKQOIGE5uvGdG0+Yw==" crossorigin="anonymous"></script>
   <script src="https://rawgithub.com/dinbror/blazy/master/blazy.min.js"></script>
+  
   <script src="/js/main.js"></script>
+  
 </body>
 </html>

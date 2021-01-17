@@ -1,7 +1,7 @@
 <div class="card__body">
    
   <% videos.items.forEach((item) => { %>
-      <div id="<%= item.id.videoId %>" data-video-id="<%= item.id.videoId %>" data-channel-id="<%= item.snippet.channelId %>" data-title="<%= item.snippet.title %>" data-description="<%= item.snippet.description %>" data-time="<%= item.snippet.publishedAt %>" class="card__video wave">
+      <div id="<%= item.id.videoId %>" data-video-id="<%= item.id.videoId %>" data-channel-id="<%= item.snippet.channelId %>" data-title="<%= item.snippet.title %>" data-time="<%= item.snippet.publishedAt %>" class="card__video wave">
         <div class="info__video__yt">
           <div class="img__video">
             <img class="b-lazy" src="/img/placeholder-image.png" data-src="<%= item.snippet.thumbnails.high.url %>" alt="<%= item.snippet.title %>">

@@ -1,17 +1,69 @@
-<div class="container__view">
+<script>
+  let descriptionVideo = `<%= description %>`;
+</script>
+<div class="container__view" data-video-id="<%= videoId %>">
   <div class="card__view__video">
     <iframe src="https://www.youtube.com/embed/<%= videoId %>?autoplay=1" id="player" allowfullscreen="1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-    <div class="title__view">
-      <%= title %>
+    <div class="info__primary__view">
+      <div class="title__view">
+        <%= title %>
+      </div>
+      <div class="statistics__view">
+        <div class="views__view">
+          <label class="number__views"><%= views.replace(/\D/g, "")
+           .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+           .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") %></label> visualizaciones
+         </div><div class="separating__statistics">•</div> 
+         <div class="time__view">
+           <%= time %>
+         </div>
+         <div class="separating__statistics__likes"></div> 
+         <div class="info__likes">
+          <div class="like__view">
+            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z" class="style-scope yt-icon"></path></g>
+            </svg>
+           </div>
+           <div class="number__likes">
+              <%= likes %>
+           </div>
+           <div class="dislike__view">
+            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></g></svg>
+           </div>
+           <div class="number__dislikes">
+            <%= dislikes %>
+            </div>
+         </div>
+      </div>
+    </div>
+    <div class="author__view">
+      <%= channelTitle %>
     </div>
     <div class="description__view">
       <%= description %>
     </div>
-    <div class="time__view">
-      <%= time %>
+    <div class="view__details__description">
+      <button class="more__details">MOSTRAR MÁS</button>
     </div>
   </div>
 </div>
+<script>
+  let description__view = document.querySelector('.description__view');
+  description__view.innerHTML = descriptionVideo.replace(/\n/g, '<div class="separating__text"></div>');
+  let re = /http([^"'\s]+)/g;
+  let transform = description__view.innerHTML.match(re);
+  transform.forEach((url) => {
+    url = url.replace('<div', '');
+    description__view.innerHTML = description__view.innerHTML.replace(url, `<a class="link__view" target="_blank" href="${url}">${url}</a>`);
+  });
+  let hashTag = /#([^"'\s]+)/g;
+  let hashResults = description__view.innerHTML.match(hashTag);
+  hashResults.forEach((hash) => {
+    hash = hash.replace('<div', '');
+    description__view.innerHTML = description__view.innerHTML.replace(hash, `<a class="link__view" target="_blank" href="https://www.youtube.com/hashtag/${hash.replace('#', '')}">${hash}</a>`);
+  });
+  // console.log(hashResults);
+  // console.log(transform);
+</script>
 <div class="previous__panel">
   <button class="btn__prev__panel wave"><i class="fas fa-arrow-left"></i> <label>Regresar</label></button>
 </div>
