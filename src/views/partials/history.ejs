@@ -64,27 +64,40 @@
   if(vecData.length >= 1) {
     vecData = vecData.reverse();
   }
+  let antDate = "";
   vecData.forEach((item, i, arr) => {
-    let myDate = calcDateTime(new Date(item.myDate));
+    // let myDate = calcDateTime(new Date(item.myDate));
     let author = item.author;
     let image = item.image;
     let title = item.title;
     let videoId = item.videoId;
     let views = item.views;
     let dateTime = item.dateTime;
-    if(i < arr.length - 1) {
-      if(myDate == 0 || arr[i + 1].myDate != myDate) {
-      html += `<div class="mydate__videos">
+    let myDate = item.myDate;
+    let fecha = new Date(myDate);
+    let options = { year: 'numeric', month: 'long', day: 'numeric' };
+    myDate = fecha.toLocaleDateString("es-ES", options);
+    // if(i < arr.length - 1) {
+    //   if(myDate == 0 || arr[i + 1].myDate != myDate) {
+    //   html += `<div class="mydate__videos ${myDate}">
+    //     ${myDate}
+    //   </div>`;
+    //   }
+    // }
+    if(antDate != myDate) {
+      html += `<div class="mydate__videos" data-context-date="${myDate}">
         ${myDate}
       </div>`;
-      }
+      antDate = myDate;
     }
-    if(arr.length == 1) {
-      html += `<div class="mydate__videos">
-        ${myDate}
-      </div>`;
       
-    }
+    
+    // if(arr.length == 1) {
+    //   html += `<div class="mydate__videos ${myDate}">
+    //     ${myDate}
+    //   </div>`;
+      
+    // }
     
     html += `
       <div id="${videoId}" data-video-id="${videoId}" class="card__video wave">

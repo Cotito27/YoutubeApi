@@ -106,26 +106,24 @@ $(document).ready(function() {
     if(this.value != "") {
       let newResponse = vecData.filter((v) => v.title.toUpperCase().includes(this.value.toUpperCase()));
       let html = "";
+      let antDate = "";
       newResponse.forEach((item, i, arr) => {
-        let myDate = calcDateTime(new Date(item.myDate));
+        // let myDate = calcDateTime(new Date(item.myDate));
         let author = item.author;
         let image = item.image;
         let title = item.title;
         let videoId = item.videoId;
         let views = item.views;
         let dateTime = item.dateTime;
-        if(i < arr.length - 1) {
-          if(myDate == 0 || arr[i + 1].myDate != myDate) {
-          html += `<div class="mydate__videos">
+        let myDate = item.myDate;
+        let fecha = new Date(myDate);
+        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+        myDate = fecha.toLocaleDateString("es-ES", options);
+        if(antDate != myDate) {
+          html += `<div class="mydate__videos" data-context-date="${myDate}">
             ${myDate}
           </div>`;
-          }
-        }
-        if(arr.length == 1) {
-          html += `<div class="mydate__videos">
-            ${myDate}
-          </div>`;
-          
+          antDate = myDate;
         }
         
         html += `
@@ -195,26 +193,24 @@ $(document).ready(function() {
       $('.btn__search__history').html(`<i class="fas fa-times"></i>`);
     } else {
       let html = '';
+      let antDate = "";
       vecData.forEach((item, i, arr) => {
-        let myDate = calcDateTime(new Date(item.myDate));
+        // let myDate = calcDateTime(new Date(item.myDate));
         let author = item.author;
         let image = item.image;
         let title = item.title;
         let videoId = item.videoId;
         let views = item.views;
         let dateTime = item.dateTime;
-        if(i < arr.length - 1) {
-          if(myDate == 0 || arr[i + 1].myDate != myDate) {
-          html += `<div class="mydate__videos">
+        let myDate = item.myDate;
+        let fecha = new Date(myDate);
+        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+        myDate = fecha.toLocaleDateString("es-ES", options);
+        if(antDate != myDate) {
+          html += `<div class="mydate__videos" data-context-date="${myDate}">
             ${myDate}
           </div>`;
-          }
-        }
-        if(arr.length == 1) {
-          html += `<div class="mydate__videos">
-            ${myDate}
-          </div>`;
-          
+          antDate = myDate;
         }
         
         html += `
@@ -537,26 +533,24 @@ $(document).ready(function() {
     if($(this).html().includes('<i')) {
       $('.input__search__history').val('').focus();
       let html = '';
+      let antDate = "";
       vecData.forEach((item, i, arr) => {
-        let myDate = calcDateTime(new Date(item.myDate));
+        // let myDate = calcDateTime(new Date(item.myDate));
         let author = item.author;
         let image = item.image;
         let title = item.title;
         let videoId = item.videoId;
         let views = item.views;
         let dateTime = item.dateTime;
-        if(i < arr.length - 1) {
-          if(myDate == 0 || arr[i + 1].myDate != myDate) {
-          html += `<div class="mydate__videos">
+        let myDate = item.myDate;
+        let fecha = new Date(myDate);
+        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+        myDate = fecha.toLocaleDateString("es-ES", options);
+        if(antDate != myDate) {
+          html += `<div class="mydate__videos" data-context-date="${myDate}">
             ${myDate}
           </div>`;
-          }
-        }
-        if(arr.length == 1) {
-          html += `<div class="mydate__videos">
-            ${myDate}
-          </div>`;
-          
+          antDate = myDate;
         }
         
         html += `
