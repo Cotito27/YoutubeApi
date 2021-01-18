@@ -65,10 +65,13 @@
   });
   let hashTag = /#([^"'\s]+)/g;
   let hashResults = description__view.innerHTML.match(hashTag);
-  hashResults.forEach((hash) => {
-    hash = hash.replace('<div', '');
-    description__view.innerHTML = description__view.innerHTML.replace(hash, `<a class="link__view" target="_blank" href="https://www.youtube.com/hashtag/${hash.replace('#', '')}">${hash}</a>`);
-  });
+  if(hashResults != null) {
+    hashResults.forEach((hash) => {
+      hash = hash.replace('<div', '');
+      description__view.innerHTML = description__view.innerHTML.replace(hash, `<a class="link__view" target="_blank" href="https://www.youtube.com/hashtag/${hash.replace('#', '')}">${hash}</a>`);
+  } );
+  }
+  
   // console.log(hashResults);
   // console.log(transform);
 </script>

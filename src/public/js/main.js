@@ -56,26 +56,32 @@ $(document).ready(function() {
   });
 
   let selectedRemoveVideoH = '';
-
   $('body').on('click', '.options__video__history', function(e) {
     let btnDeleteVideo = document.querySelector('.remove__video__history');
     btnDeleteVideo.style.left = getOffsetLeft(this) - 80 + 'px';
     btnDeleteVideo.style.top = getOffsetTop(this) - 5 + 'px';
-    btnDeleteVideo.classList.toggle('d-none');
+    if(selectedRemoveVideoH == this.parentElement) {
+      btnDeleteVideo.classList.toggle('d-none');
+    } else {
+      btnDeleteVideo.classList.remove('d-none');
+    }
     // console.log(getOffsetLeft(this), getOffsetTop(this));
     selectedRemoveVideoH = this.parentElement;
+    
     return e.stopPropagation();
   });
 
   $(window).on('resize', function() {
     let btnDeleteVideo = document.querySelector('.remove__video__history');
-    btnDeleteVideo.classList.add('d-none');
+    if(btnDeleteVideo) {
+      btnDeleteVideo.classList.add('d-none');
+    }
   });
 
   $('body').on('click', '.remove__video__history', function() {
     let indexRemoved = vecData.findIndex((v) => v.videoId == selectedRemoveVideoH.dataset.videoId);
     vecData.splice(indexRemoved, 1);
-    localStorage.setItem('history__videos__feed', JSON.stringify(vecData));
+    localStorage.setItem('history__videos__feed', JSON.stringify(vecData.reverse()));
     selectedRemoveVideoH.remove();
     this.classList.add('d-none');
     if(!$('.card__video')[0]) {
