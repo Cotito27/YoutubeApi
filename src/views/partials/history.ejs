@@ -1,0 +1,144 @@
+<div class="search__video__history">
+  <button class="btn__search__history">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+  </button>
+  <input class="input__search__history" type="text" placeholder="Buscar en el historial">
+</div>
+<div class="container__history__videos">
+  
+  <div class="card__history__videos">
+    <div class="history__videos__content">
+      <!-- <div class="mydate__videos">
+        hoy
+      </div>
+      <div id="VHDSAv" class="card__video wave">
+        <div class="info__video__yt">
+          <div class="img__video">
+            <img class="b-lazy" src="/img/placeholder-image.png" data-src="https://i.ytimg.com/vi/ZcXUMg96Ytc/hqdefault.jpg" alt="">
+          </div>
+          <div class="title__video">
+            ASFAS
+          </div>
+          <div class="author__video">
+            ASFASF
+          </div>
+          <div class="date__video">
+            <nav class="date__time"></nav>
+            <input type="hidden" class="dateTime__video">
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="video__view__history">
+      <div class="img__video__history">
+        <img src="https://i.ytimg.com/vi/czVM9j1seHk/hqdefault.jpg" alt="">
+      </div>
+      <div class="info__video__history">
+        <div class="title__video__history">
+          After A Rocky Week, Stephen Finally Gets To Celebrate The Georgia Senate Wins By Warnock And Ossoff
+        </div>
+        <div class="details__video__history">
+          <div class="author__video__history">
+            The Late Show with Stephen Colbert
+          </div> 
+          <div class="total__views__history">
+            142.213.212 visualizaciones
+          </div>
+        </div>
+        
+      </div>
+    </div> -->
+  </div>
+</div>
+<div class="remove__video__history d-none">
+  Eliminar
+</div>
+<script>
+  let containerHistory = document.querySelector('.history__videos__content');
+  let vecData = [];
+  if(localStorage.getItem('history__videos__feed')) {
+    vecData = JSON.parse(localStorage.getItem('history__videos__feed'));
+  }
+  
+  let html = '';
+  if(vecData.length >= 1) {
+    vecData = vecData.reverse();
+  }
+  vecData.forEach((item, i, arr) => {
+    let myDate = calcDateTime(new Date(item.myDate));
+    let author = item.author;
+    let image = item.image;
+    let title = item.title;
+    let videoId = item.videoId;
+    let views = item.views;
+    let dateTime = item.dateTime;
+    if(i < arr.length - 1) {
+      if(myDate == 0 || arr[i + 1].myDate != myDate) {
+      html += `<div class="mydate__videos">
+        ${myDate}
+      </div>`;
+      }
+    }
+    if(arr.length == 1) {
+      html += `<div class="mydate__videos">
+        ${myDate}
+      </div>`;
+      
+    }
+    
+    html += `
+      <div id="${videoId}" data-video-id="${videoId}" class="card__video wave">
+        <div class="options__video__history">
+              <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+          </div>
+        <div class="info__video__yt">
+          <div class="img__video">
+            <img class="b-lazy" src="/img/placeholder-image.png" data-src="${image}" alt="">
+          </div>
+          <div class="title__video">
+            ${title}
+          </div>
+          <div class="author__video">
+            ${author}
+          </div>
+          <div class="date__video">
+            <nav class="date__time">${dateTime}</nav>
+          </div>
+          <div class="date__video">
+            <nav class="date__time">${views} visualizaciones</nav>
+          </div>
+        </div>
+      </div>`;
+     
+  });
+  if(html == '') {
+    html = `<div class="msg__notfound__items">
+      <label>No se encontraron resultados en tu historial.</label>
+      <button class="btn__prev__panel wave"><i class="fas fa-arrow-left"></i> <label>Regresar</label></button>
+    </div>`;
+  }
+  containerHistory.innerHTML = html;
+		function calcDateTime(diaPrevious) {
+			let dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+			let dt = new Date();
+			let text = dias[dt.getUTCDay()];
+			let prevText = dias[diaPrevious.getUTCDay()];
+      // console.log(dt.getUTCDay(), diaPrevious.getUTCDay());
+      // console.log(dt.getUTCDate(), diaPrevious.getUTCDate());
+			if(dt.getUTCDay() == parseInt(diaPrevious.getUTCDay() - 1)) {
+				text = 'ayer';
+			} 
+			 else if(dias[dt.getUTCDay()] == 'domingo')  {
+			 	if(diaPrevious.getUTCDay() == 6) {
+			 		text = 'ayer';
+			 	} else if(dt.getUTCDay() == diaPrevious.getUTCDay()) {
+			 		text = 'hoy';
+			 	}
+			}
+			 else if(dt.getUTCDay() == diaPrevious.getUTCDay()) {
+				text = 'hoy';
+      }
+      return text;
+			// document.write(text);
+		}
+</script>

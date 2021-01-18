@@ -1,5 +1,5 @@
 <div class="card__body">
-   
+  <% if(!error) { %>
   <% videos.items.forEach((item) => { %>
       <div id="<%= item.id.videoId %>" data-video-id="<%= item.id.videoId %>" data-channel-id="<%= item.snippet.channelId %>" data-title="<%= item.snippet.title %>" data-time="<%= item.snippet.publishedAt %>" class="card__video wave">
         <div class="info__video__yt">
@@ -7,7 +7,7 @@
             <img class="b-lazy" src="/img/placeholder-image.png" data-src="<%= item.snippet.thumbnails.high.url %>" alt="<%= item.snippet.title %>">
           </div>
           <div class="title__video">
-            <%= item.snippet.title %>
+            <%= item.snippet.title.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&#39;/g, "'") %>
           </div>
           <div class="author__video">
             <%= item.snippet.channelTitle %>
@@ -20,8 +20,16 @@
         <iframe src="" class="d-none" id="player" allow='autoplay'></iframe>
       </div>
   <% }) %>
+  <% } else { %>
+    <div class="msg__notfound__items">
+      <label>No se encontraron resultados.</label>
+      <button class="btn__prev__panel wave"><i class="fas fa-arrow-left"></i> <label>Regresar</label></button>
+    </div>
+  <% } %>
   
 </div>
+<% if(!error) { %>
 <div class="more__videos">
   <button class="btn__moreVideos wave" data-next-page="<%= videos.nextPageToken || '' %>">Ver más</button>
 </div>
+<% } %>

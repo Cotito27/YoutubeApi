@@ -88,7 +88,7 @@
   .time__view,
   .views__view,
   .statistics__view {
-    color: #8f8f8f !important;
+    color: #adadad !important;
   }
 
   .logo__youtubecv:hover {
@@ -136,7 +136,12 @@
     fill: #e3e4e6;
   }
 
-  .menu__bars:hover {
+  .remove__search {
+    color: #e3e4e6 !important;
+  }
+
+  .menu__bars:hover,
+  .remove__search:hover {
     background-color: rgb(68, 67, 67);
   }
 
@@ -165,13 +170,48 @@
   }
 
   .item__list__text {
-    padding: 5px 10px;
     color: #dadada;
-    cursor: pointer;
   }
 
   .item__list__text:hover {
     background-color: rgb(75, 75, 75);
+  }
+
+  .delete__item__history {
+    color: #3ea6ff;
+  }
+
+  .search__video__history {
+    background-color: rgb(41, 41, 41);
+  }
+
+  .input__search__history::placeholder {
+    color: rgb(180, 180, 180);
+  }
+
+  .input__search__history:focus {
+    border: 1px solid #7a99bd;
+  }
+
+  .btn__search__history {
+    color: #d6d6d6;
+  }
+
+  .input__search__history {
+    background-color: #222121;
+  }
+
+  .input__search__history {
+    background-color: #212122;
+    color: rgb(223, 221, 221);
+  }
+
+  .options__video__history:hover {
+    background-color: #383838;
+  }
+
+  .content__save__video:hover {
+    background-color: rgb(44, 44, 44);
   }
   </style>`;
   }
@@ -208,10 +248,16 @@
   <% if(allVideos) { %>
     <%- include('partials/videos') %>
   <% } else { %>
+    <% if(!history) { %>
     <%- include('partials/video') %>
+    <% } else { %>
+    <%- include('partials/history') %>
+    <% } %>
   <% } %>
-  <button class="btn__up__scroll d-none"><i class="fas fa-angle-up"></i></button>
-  <div class="drop__list__history">
+  <div class="content__up__scroll d-none">
+    <button class="btn__up__scroll"><i class="fas fa-angle-up"></i></button>
+  </div>
+  <div class="drop__list__history d-none">
   </div>
   <script>
     // 2. This code loads the IFrame Player API code asynchronously.

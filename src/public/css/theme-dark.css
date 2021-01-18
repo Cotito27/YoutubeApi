@@ -70,10 +70,15 @@ body {
 }
 
 .menu__bars {
-  fill: rgb(194, 194, 194);
+  fill: #e3e4e6;
 }
 
-.menu__bars:hover {
+.remove__search {
+  color: #e3e4e6 !important;
+}
+
+.menu__bars:hover,
+.remove__search:hover {
   background-color: rgb(68, 67, 67);
 }
 
@@ -109,4 +114,37 @@ body {
 
 .item__list__text:hover {
   background-color: rgb(75, 75, 75);
+}
+
+.delete__item__history {
+  color: #3ea6ff;
+}
+
+.search__video__history {
+  background-color: rgb(41, 41, 41);
+}
+
+.input__search__history::placeholder {
+  color: rgb(180, 180, 180);
+}
+
+.input__search__history:focus {
+  border: 1px solid #7a99bd;
+}
+
+.btn__search__history {
+  color: #d6d6d6;
+}
+
+.input__search__history {
+  background-color: #212122;
+  color: rgb(223, 221, 221);
+}
+
+.options__video__history:hover {
+  background-color: #383838;
+}
+
+.content__save__video:hover {
+  background-color: rgb(44, 44, 44);
 }

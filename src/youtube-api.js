@@ -40,7 +40,7 @@ async function getYoutubeVideos(search, tokenPage) {
   if(response) {
     data = response.data;
   }
-  // console.log(data);
+  // console.log(JSON.stringify(data));
   // if(data.nextPageToken) {
   //   console.log('Next Token: ' + data.nextPageToken);
   // }

@@ -1,8 +1,8 @@
 <script>
   let descriptionVideo = `<%= description %>`;
 </script>
-<div class="container__view" data-video-id="<%= videoId %>">
-  <div class="card__view__video">
+<div class="container__view">
+  <div class="card__view__video" data-video-id="<%= videoId %>" data-target-image="<%= imgPreview %>">
     <iframe src="https://www.youtube.com/embed/<%= videoId %>?autoplay=1" id="player" allowfullscreen="1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
     <div class="info__primary__view">
       <div class="title__view">
@@ -32,6 +32,14 @@
            <div class="number__dislikes">
             <%= dislikes %>
             </div>
+         </div>
+         <div class="content__save__video">
+          <div class="save__later__video">
+            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z" class="style-scope yt-icon"></path></g></svg>
+           </div>
+           <div class="title__save__later">
+             GUARDAR
+           </div>
          </div>
       </div>
     </div>

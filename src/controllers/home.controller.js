@@ -30,6 +30,7 @@ ctrl.getVideos = async (req, res) => {
   res.render('index', {
     title: 'Youtube CV',
     videos,
+    error: false,
     allVideos: true,
     search: ''
   });
@@ -38,9 +39,25 @@ ctrl.getVideos = async (req, res) => {
 ctrl.searchVideos = async (req, res) => {
   let videoSearch = req.query.q || '';
   let videos = await require('../youtube-api').getYoutubeVideos(videoSearch);
+  if(videos.msgError) {
+    if(videos.msgError == 'error') {
+      return res.json({message: videos.error.errors});
+    }
+  }
+  // console.log(videos);
+  if(videos.items.length <= 0) {
+    res.render('index', {
+      title: 'Youtube CV',
+      error: true,
+      allVideos: true,
+      search: videoSearch
+    });
+    return;
+  }
   res.render('index', {
     title: 'Youtube CV',
     videos,
+    error: false,
     allVideos: true,
     search: videoSearch
   });
@@ -68,13 +85,15 @@ ctrl.watchVideo = async (req, res) => {
   res.render('index', {
     videoId,
     allVideos: false,
+    history: false,
     title: video.items[0].snippet.title,
     description: video.items[0].snippet.description,
     time: video.items[0].snippet.publishedAt,
     views: video.items[0].statistics.viewCount,
     likes: video.items[0].statistics.likeCount,
     dislikes: video.items[0].statistics.dislikeCount,
-    channelTitle: video.items[0].snippet.channelTitle
+    channelTitle: video.items[0].snippet.channelTitle,
+    imgPreview: video.items[0].snippet.thumbnails.high.url
   });
 }
 
@@ -84,6 +103,14 @@ ctrl.getViews = async (req, res) => {
   let response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoId}&key=${process.env.YOUTUBE_TOKEN}`);
   let video = await response.json();
   res.send(video);
+}
+
+ctrl.getHistory = (req, res) => {
+  res.render('index', {
+    title: 'Youtube CV',
+    allVideos: false,
+    history: true,
+  });
 }
 
 module.exports = ctrl;

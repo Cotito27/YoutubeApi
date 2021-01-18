@@ -19,7 +19,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navbar__logo {
@@ -61,12 +61,16 @@ body {
   margin-left: 20px;
 }
 
+.fa-search {
+  width: 16px;
+}
+
 .btn__clean {
   position: absolute;
   top: 0px;
   right: 60px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
   background-color: transparent;
   border: none;
   outline: none;
@@ -85,7 +89,19 @@ body {
   cursor: pointer;
 }
 
+.remove__search {
+  margin-left: 20px;
+  font-size: 18px;
+  padding: 5px;
+  color: #302f2f;
+  cursor: pointer;
+}
+
 .menu__bars:hover {
+  background-color: #e3e4e6;
+}
+
+.remove__search:hover {
   background-color: #e3e4e6;
 }
 
@@ -110,6 +126,17 @@ body {
 }
 
 .block__container {
+  position: absolute;
+  width: 100vw;
+  height: 1000000px;
+  opacity: 0.5;
+  overflow: hidden;
+  top: 0;
+  background-color: #000000;
+  z-index: 2;
+}
+
+.block__search {
   position: absolute;
   width: 100vw;
   height: 1000000px;
@@ -241,7 +268,7 @@ body {
 }
 
 .card__video .date__video {
-  color: #424242;
+  color: #626262;
 }
 
 .card__video:hover {
@@ -285,16 +312,26 @@ body {
 } */
 
 .btn__up__scroll {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
   border: none;
   outline: none;
   border-radius: 15px;
-  opacity: 0.5;
+  opacity: 0.7;
   width: 30px;
   height: 30px;
   font-size: 18px;
+  cursor: pointer;
+}
+
+.content__up__scroll {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
   cursor: pointer;
 }
 
@@ -306,16 +343,51 @@ body {
   display: flex;
   flex-direction: column;
   padding: 15px 5px;
+  z-index: 2;
+  border-bottom: 1px solid rgba(20, 76, 139, 0.1);
+  border-left: 1px solid rgba(20, 76, 139, 0.1);
+  border-right: 1px solid rgba(20, 76, 139, 0.1);
 }
 
 .item__list__text {
-  padding: 5px 10px;
+  padding: 10px 10px;
   color: #3f3f3f;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .item__list__text:hover {
   background-color: rgb(235, 234, 234);
+}
+
+.delete__item__history {
+  color: #065fd4;
+  font-size: 14px;
+  float: right;
+}
+
+.title__item__history {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 52px);
+  display: inline-block;
+}
+
+.delete__item__history:hover {
+  text-decoration: underline;
+}
+
+.msg__notfound__items {
+  font-size: 25px;
+  font-weight: 200;
+  position: absolute;
+  top: 50%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .more__videos {
@@ -487,13 +559,33 @@ button:hover {
 }
 
 .like__view,
-.dislike__view {
+.dislike__view,
+.save__later__video {
   width: 20px;
   fill: #909090;
   padding: 0 6px;
   margin-top: -6px;
   /* border-bottom: 2px solid #424242; */
   cursor: pointer;
+}
+
+.content__save__video {
+  display: flex;
+  padding: 10px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.content__save__video:hover {
+  background-color: rgb(219, 219, 219);
+}
+
+.title__save__later {
+  margin-top: 3px;
+}
+
+.save__later__video {
+  margin-top: 2px;
 }
 
 .like__view {
@@ -555,12 +647,17 @@ button:hover {
   margin-bottom: 35px;
 }
 
-.previous__panel label {
+.previous__panel label,
+.msg__notfound__items button label {
   margin-right: 5px;
   cursor: pointer;
 }
 
-.previous__panel button {
+.msg__notfound__items button {
+  margin-top: 25px;
+}
+
+.btn__prev__panel {
   height: 40px;
   width: auto;
   background: var(--primary-color);
@@ -573,12 +670,13 @@ button:hover {
   font-weight: 550;
 }
 
-.previous__panel button:hover {
+.btn__prev__panel:hover {
   background-color: var(--primary-light-color);
   cursor: pointer;
 }
 
-.previous__panel i {
+.previous__panel i,
+.msg__notfound__items i {
   margin-right: 5px;
   margin-left: 5px;
 }
@@ -631,12 +729,166 @@ button:hover {
   margin-bottom: 2px;
 }
 
+.mydate__videos {
+  text-transform: capitalize;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.card__history__videos {
+  max-width: calc(100%);
+}
+
+.container__history__videos {
+  width: calc(100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 126px;
+}
+
+.search__video__history {
+  position: fixed;
+  top: 55px;
+  width: calc(100% - 30px);
+  background-color: rgb(236, 236, 236);
+  z-index: 1;
+  padding: 15px;
+}
+
+.input__search__history {
+  background-color: white;
+  color: rgb(68, 68, 68);
+  height: 35px;
+  width: 300px;
+  border: none;
+  outline: none;
+  border: 1px solid rgb(128, 128, 128);
+  max-width: 100%;
+  float: right;
+  margin-left: 390px;
+}
+
+.input__search__history:focus {
+  border: 1px solid rgb(54, 90, 250);
+}
+
+.btn__search__history {
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  background-color: transparent;
+  color: #424242;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.card__history__videos {
+  width: auto;
+  height: 350px;
+}
+
+.video__view__history img {
+  width: 100%;
+  height: 100%;
+}
+
+.mydate__videos {
+  line-height: 40px;
+}
+
+.info__video__history {
+  line-height: 20px;
+}
+
+.title__video__history {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.video__view__history {
+  width: 350px;
+  height: 50px;
+}
+
+.details__video__history {
+  color: #636363;
+  font-size: 14px;
+}
+
+.author__video__history,
+.total__views__history {
+}
+
+.card__history__videos .card__video {
+  padding: 20px;
+  width: 350px;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.options__video__history {
+  position: absolute;
+  right: 20px;
+  bottom: 21px;
+  color: #7d7b7b;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options__video__history:hover {
+  background-color: #cecdcd;
+}
+
+.remove__video__history {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background-color: #444444;
+  color: whitesmoke;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove__video__history:hover {
+  background-color: #696969;
+}
+
+.history__videos__content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.history__videos__content .info__video__yt {
+  line-height: 22px;
+}
+
+.card__video img {
+  width: 100%;
+  height: 100%;
+}
+
 @media only screen and (min-width: 1054px) {
   /* .card__view__video .description__view {
     max-height: 100px;
   } */
   .view__details__description {
-    bottom: 4px;
+    bottom: 6px;
   }
 }
 
@@ -712,7 +964,8 @@ button:hover {
 
 @media only screen and (max-width: 579px) {
   /**/
-  .info__likes {
+  .info__likes,
+  .content__save__video {
     margin-top: 15px;
     justify-content: flex-start;
   }
@@ -729,7 +982,11 @@ button:hover {
 
   .search__video input:focus {
     border-bottom: 2px solid var(--primary-color);
-    width: calc(100vw - 40px);
+    width: calc(100vw - 80px);
+  }
+
+  .input__search__history {
+    width: 100%;
   }
 
   .logo__youtubecv {
