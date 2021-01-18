@@ -3,7 +3,7 @@ $(document).ready(function() {
   // if(location.href.includes('/search?q=')) {
   //   $('.input__search').val(location.href.split('/search?q=')[1]);
   // }
-  localStorage.clear();
+  // localStorage.clear();
   function updateTime() {
     let videosDate = document.querySelectorAll('.dateTime__video');
     videosDate.forEach((item) => {
