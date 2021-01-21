@@ -764,10 +764,13 @@ $(document).ready(function() {
   $('body').on('click', '.btn__search', function() {
     let value = $('.input__search').val();
     if(value != "") {
-      history__search.push(value);
-      localStorage.setItem('history__feed', history__search);
-      localStorage.searchHistory = value;
-      location.href = `/search?q=${value}`;
+      let verifyRepeat = history__search.find((v) => v == value);
+        if(!verifyRepeat) {
+          history__search.push(value);
+          localStorage.setItem('history__feed', JSON.stringify(history__search));
+        }
+        localStorage.searchHistory = value;
+        location.href = `/search?q=${value}`;
     } 
   });
 
@@ -1113,6 +1116,21 @@ $(document).ready(function() {
     }
     
   }
+  var bLazy = new Blazy({
+    offset: 40
+    , success: function(element){
+    setTimeout(function(){
+    // We want to remove the loader gif now.
+    // First we find the parent container
+    // then we remove the "loading" class which holds the loader image
+    // var parent = element.parentNode;
+    // // console.log(parent);
+    // parent.className = parent.className.replace(/\bloading\b/,'');
+    }, 200);
+      },error: (err) => {
+        alert(err)
+      },
+  });
 });
 
 window.onload = function() {
