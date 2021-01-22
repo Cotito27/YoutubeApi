@@ -29,7 +29,9 @@
   
 </div>
 <% if(!error) { %>
-<div class="more__videos">
-  <button class="btn__moreVideos wave" data-next-page="<%= videos.nextPageToken || '' %>">Ver más</button>
-</div>
+  <% if(videos.nextPageToken) { %>
+    <div class="more__videos">
+      <button class="btn__moreVideos wave" data-next-page="<%= videos.nextPageToken || '' %>">Ver más</button>
+    </div>
+  <% } %>
 <% } %>

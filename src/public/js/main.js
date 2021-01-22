@@ -916,7 +916,11 @@ $(document).ready(function() {
     });
     
     this.dataset.nextPage = videos.nextPageToken || '';
-    this.innerHTML = 'Ver más';
+    if(this.dataset.nextPage != '') {
+      this.innerHTML = 'Ver más';
+    } else {
+      this.remove();
+    }
     $(this).removeAttr('disabled');
     var bLazy2 = new Blazy({
       offset: 40
