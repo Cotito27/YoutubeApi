@@ -892,7 +892,9 @@ $(document).ready(function() {
     <div></div>
 </div>`;
     $(this).attr('disabled', 'disabled');
-    let response = await fetch(`/moreVideos/${this.dataset.nextPage}/${$('.input__search').val() || null}`);
+    let params = new URLSearchParams(location.search);
+    let vSearch = params.get('q');
+    let response = await fetch(`/moreVideos/${this.dataset.nextPage}/${vSearch || null}`);
     let videos = await response.json();
     videos.items.forEach((item) => {
       $('.card__body').append(`<div id="${item.id.videoId}" data-video-id="${item.id.videoId}" data-channel-id="${item.snippet.channelId}" class="card__video wave">
